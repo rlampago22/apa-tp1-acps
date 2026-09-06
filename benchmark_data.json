@@ -1,0 +1,1132 @@
+{
+  "random": {
+    "Bubble Sort": {
+      "10": {
+        "time_ms": 0.007,
+        "comps": 43,
+        "moves": 48
+      },
+      "50": {
+        "time_ms": 0.1251,
+        "comps": 1206,
+        "moves": 1168
+      },
+      "100": {
+        "time_ms": 2.0622,
+        "comps": 4888,
+        "moves": 4896
+      },
+      "250": {
+        "time_ms": 8.7121,
+        "comps": 30913,
+        "moves": 31337
+      },
+      "500": {
+        "time_ms": 30.7128,
+        "comps": 124156,
+        "moves": 123800
+      },
+      "1000": {
+        "time_ms": 141.3785,
+        "comps": 499006,
+        "moves": 499084
+      }
+    },
+    "Selection Sort": {
+      "10": {
+        "time_ms": 0.0052,
+        "comps": 45,
+        "moves": 15
+      },
+      "50": {
+        "time_ms": 0.1274,
+        "comps": 1225,
+        "moves": 92
+      },
+      "100": {
+        "time_ms": 0.443,
+        "comps": 4950,
+        "moves": 192
+      },
+      "250": {
+        "time_ms": 4.5085,
+        "comps": 31125,
+        "moves": 487
+      },
+      "500": {
+        "time_ms": 15.9249,
+        "comps": 124750,
+        "moves": 987
+      },
+      "1000": {
+        "time_ms": 72.4396,
+        "comps": 499500,
+        "moves": 1986
+      }
+    },
+    "Insertion Sort": {
+      "10": {
+        "time_ms": 0.0047,
+        "comps": 32,
+        "moves": 44
+      },
+      "50": {
+        "time_ms": 0.1455,
+        "comps": 630,
+        "moves": 682
+      },
+      "100": {
+        "time_ms": 0.809,
+        "comps": 2508,
+        "moves": 2612
+      },
+      "250": {
+        "time_ms": 4.381,
+        "comps": 16070,
+        "moves": 16324
+      },
+      "500": {
+        "time_ms": 18.1644,
+        "comps": 62766,
+        "moves": 63271
+      },
+      "1000": {
+        "time_ms": 98.9017,
+        "comps": 248237,
+        "moves": 249243
+      }
+    },
+    "Merge Sort": {
+      "10": {
+        "time_ms": 0.0158,
+        "comps": 23,
+        "moves": 34
+      },
+      "50": {
+        "time_ms": 0.1905,
+        "comps": 221,
+        "moves": 286
+      },
+      "100": {
+        "time_ms": 0.4826,
+        "comps": 541,
+        "moves": 672
+      },
+      "250": {
+        "time_ms": 0.62,
+        "comps": 1675,
+        "moves": 1994
+      },
+      "500": {
+        "time_ms": 2.9827,
+        "comps": 3845,
+        "moves": 4488
+      },
+      "1000": {
+        "time_ms": 10.8607,
+        "comps": 8710,
+        "moves": 9976
+      }
+    },
+    "Quick Sort": {
+      "10": {
+        "time_ms": 0.0099,
+        "comps": 37,
+        "moves": 34
+      },
+      "50": {
+        "time_ms": 0.1391,
+        "comps": 350,
+        "moves": 240
+      },
+      "100": {
+        "time_ms": 0.3625,
+        "comps": 789,
+        "moves": 538
+      },
+      "250": {
+        "time_ms": 0.366,
+        "comps": 2417,
+        "moves": 1495
+      },
+      "500": {
+        "time_ms": 2.0328,
+        "comps": 5302,
+        "moves": 3210
+      },
+      "1000": {
+        "time_ms": 6.6962,
+        "comps": 11399,
+        "moves": 6886
+      }
+    },
+    "DPES (Referencia)": {
+      "10": {
+        "time_ms": 0.0091,
+        "comps": 29,
+        "moves": 39
+      },
+      "50": {
+        "time_ms": 0.182,
+        "comps": 425,
+        "moves": 279
+      },
+      "100": {
+        "time_ms": 0.2557,
+        "comps": 1044,
+        "moves": 620
+      },
+      "250": {
+        "time_ms": 1.0834,
+        "comps": 3418,
+        "moves": 1758
+      },
+      "500": {
+        "time_ms": 2.2215,
+        "comps": 7971,
+        "moves": 3780
+      },
+      "1000": {
+        "time_ms": 10.2539,
+        "comps": 18111,
+        "moves": 8606
+      }
+    },
+    "ACPS (Nosso Autoral)": {
+      "10": {
+        "time_ms": 0.1984,
+        "comps": 30,
+        "moves": 39
+      },
+      "50": {
+        "time_ms": 0.1574,
+        "comps": 319,
+        "moves": 276
+      },
+      "100": {
+        "time_ms": 0.3602,
+        "comps": 747,
+        "moves": 675
+      },
+      "250": {
+        "time_ms": 1.0579,
+        "comps": 2288,
+        "moves": 1809
+      },
+      "500": {
+        "time_ms": 0.9602,
+        "comps": 5160,
+        "moves": 4327
+      },
+      "1000": {
+        "time_ms": 7.0207,
+        "comps": 11639,
+        "moves": 9116
+      }
+    }
+  },
+  "sorted": {
+    "Bubble Sort": {
+      "10": {
+        "time_ms": 0.0038,
+        "comps": 9,
+        "moves": 0
+      },
+      "50": {
+        "time_ms": 0.0114,
+        "comps": 49,
+        "moves": 0
+      },
+      "100": {
+        "time_ms": 0.0271,
+        "comps": 99,
+        "moves": 0
+      },
+      "250": {
+        "time_ms": 0.0553,
+        "comps": 249,
+        "moves": 0
+      },
+      "500": {
+        "time_ms": 0.0937,
+        "comps": 499,
+        "moves": 0
+      },
+      "1000": {
+        "time_ms": 0.2963,
+        "comps": 999,
+        "moves": 0
+      }
+    },
+    "Selection Sort": {
+      "10": {
+        "time_ms": 0.0163,
+        "comps": 45,
+        "moves": 0
+      },
+      "50": {
+        "time_ms": 0.2575,
+        "comps": 1225,
+        "moves": 0
+      },
+      "100": {
+        "time_ms": 1.0154,
+        "comps": 4950,
+        "moves": 0
+      },
+      "250": {
+        "time_ms": 6.2612,
+        "comps": 31125,
+        "moves": 0
+      },
+      "500": {
+        "time_ms": 15.7612,
+        "comps": 124750,
+        "moves": 0
+      },
+      "1000": {
+        "time_ms": 67.4509,
+        "comps": 499500,
+        "moves": 0
+      }
+    },
+    "Insertion Sort": {
+      "10": {
+        "time_ms": 0.0059,
+        "comps": 9,
+        "moves": 18
+      },
+      "50": {
+        "time_ms": 0.026,
+        "comps": 49,
+        "moves": 98
+      },
+      "100": {
+        "time_ms": 0.0501,
+        "comps": 99,
+        "moves": 198
+      },
+      "250": {
+        "time_ms": 0.1238,
+        "comps": 249,
+        "moves": 498
+      },
+      "500": {
+        "time_ms": 0.0744,
+        "comps": 499,
+        "moves": 998
+      },
+      "1000": {
+        "time_ms": 0.2112,
+        "comps": 999,
+        "moves": 1998
+      }
+    },
+    "Merge Sort": {
+      "10": {
+        "time_ms": 0.0347,
+        "comps": 15,
+        "moves": 34
+      },
+      "50": {
+        "time_ms": 0.2374,
+        "comps": 133,
+        "moves": 286
+      },
+      "100": {
+        "time_ms": 0.54,
+        "comps": 316,
+        "moves": 672
+      },
+      "250": {
+        "time_ms": 1.4274,
+        "comps": 983,
+        "moves": 1994
+      },
+      "500": {
+        "time_ms": 2.3396,
+        "comps": 2216,
+        "moves": 4488
+      },
+      "1000": {
+        "time_ms": 6.7676,
+        "comps": 4932,
+        "moves": 9976
+      }
+    },
+    "Quick Sort": {
+      "10": {
+        "time_ms": 0.0246,
+        "comps": 40,
+        "moves": 24
+      },
+      "50": {
+        "time_ms": 0.1678,
+        "comps": 348,
+        "moves": 124
+      },
+      "100": {
+        "time_ms": 0.3691,
+        "comps": 795,
+        "moves": 252
+      },
+      "250": {
+        "time_ms": 0.7296,
+        "comps": 2138,
+        "moves": 508
+      },
+      "500": {
+        "time_ms": 1.5745,
+        "comps": 4773,
+        "moves": 1020
+      },
+      "1000": {
+        "time_ms": 4.1684,
+        "comps": 10542,
+        "moves": 2044
+      }
+    },
+    "DPES (Referencia)": {
+      "10": {
+        "time_ms": 0.0122,
+        "comps": 9,
+        "moves": 18
+      },
+      "50": {
+        "time_ms": 0.1596,
+        "comps": 318,
+        "moves": 86
+      },
+      "100": {
+        "time_ms": 0.3354,
+        "comps": 755,
+        "moves": 182
+      },
+      "250": {
+        "time_ms": 0.8389,
+        "comps": 2714,
+        "moves": 446
+      },
+      "500": {
+        "time_ms": 2.9042,
+        "comps": 7053,
+        "moves": 838
+      },
+      "1000": {
+        "time_ms": 4.1562,
+        "comps": 14231,
+        "moves": 1838
+      }
+    },
+    "ACPS (Nosso Autoral)": {
+      "10": {
+        "time_ms": 0.0061,
+        "comps": 9,
+        "moves": 0
+      },
+      "50": {
+        "time_ms": 0.0257,
+        "comps": 49,
+        "moves": 0
+      },
+      "100": {
+        "time_ms": 0.0458,
+        "comps": 99,
+        "moves": 0
+      },
+      "250": {
+        "time_ms": 0.0846,
+        "comps": 249,
+        "moves": 0
+      },
+      "500": {
+        "time_ms": 0.2549,
+        "comps": 499,
+        "moves": 0
+      },
+      "1000": {
+        "time_ms": 0.133,
+        "comps": 999,
+        "moves": 0
+      }
+    }
+  },
+  "reverse": {
+    "Bubble Sort": {
+      "10": {
+        "time_ms": 0.0088,
+        "comps": 45,
+        "moves": 90
+      },
+      "50": {
+        "time_ms": 0.5053,
+        "comps": 1225,
+        "moves": 2450
+      },
+      "100": {
+        "time_ms": 1.8507,
+        "comps": 4950,
+        "moves": 9900
+      },
+      "250": {
+        "time_ms": 10.4604,
+        "comps": 31125,
+        "moves": 62250
+      },
+      "500": {
+        "time_ms": 41.6404,
+        "comps": 124750,
+        "moves": 249500
+      },
+      "1000": {
+        "time_ms": 166.8712,
+        "comps": 499500,
+        "moves": 999000
+      }
+    },
+    "Selection Sort": {
+      "10": {
+        "time_ms": 0.0045,
+        "comps": 45,
+        "moves": 10
+      },
+      "50": {
+        "time_ms": 0.2361,
+        "comps": 1225,
+        "moves": 50
+      },
+      "100": {
+        "time_ms": 0.9912,
+        "comps": 4950,
+        "moves": 100
+      },
+      "250": {
+        "time_ms": 2.7706,
+        "comps": 31125,
+        "moves": 250
+      },
+      "500": {
+        "time_ms": 18.7169,
+        "comps": 124750,
+        "moves": 500
+      },
+      "1000": {
+        "time_ms": 49.5516,
+        "comps": 499500,
+        "moves": 1000
+      }
+    },
+    "Insertion Sort": {
+      "10": {
+        "time_ms": 0.0057,
+        "comps": 45,
+        "moves": 63
+      },
+      "50": {
+        "time_ms": 0.136,
+        "comps": 1225,
+        "moves": 1323
+      },
+      "100": {
+        "time_ms": 1.0049,
+        "comps": 4950,
+        "moves": 5148
+      },
+      "250": {
+        "time_ms": 7.4157,
+        "comps": 31125,
+        "moves": 31623
+      },
+      "500": {
+        "time_ms": 27.6842,
+        "comps": 124750,
+        "moves": 125748
+      },
+      "1000": {
+        "time_ms": 123.6,
+        "comps": 499500,
+        "moves": 501498
+      }
+    },
+    "Merge Sort": {
+      "10": {
+        "time_ms": 0.0137,
+        "comps": 19,
+        "moves": 34
+      },
+      "50": {
+        "time_ms": 0.0856,
+        "comps": 153,
+        "moves": 286
+      },
+      "100": {
+        "time_ms": 0.3686,
+        "comps": 356,
+        "moves": 672
+      },
+      "250": {
+        "time_ms": 1.3654,
+        "comps": 1011,
+        "moves": 1994
+      },
+      "500": {
+        "time_ms": 1.2669,
+        "comps": 2272,
+        "moves": 4488
+      },
+      "1000": {
+        "time_ms": 5.6463,
+        "comps": 5044,
+        "moves": 9976
+      }
+    },
+    "Quick Sort": {
+      "10": {
+        "time_ms": 0.009,
+        "comps": 35,
+        "moves": 40
+      },
+      "50": {
+        "time_ms": 0.0546,
+        "comps": 314,
+        "moves": 246
+      },
+      "100": {
+        "time_ms": 0.3234,
+        "comps": 766,
+        "moves": 498
+      },
+      "250": {
+        "time_ms": 0.7082,
+        "comps": 2402,
+        "moves": 1246
+      },
+      "500": {
+        "time_ms": 0.7682,
+        "comps": 5677,
+        "moves": 2494
+      },
+      "1000": {
+        "time_ms": 4.3584,
+        "comps": 13211,
+        "moves": 5010
+      }
+    },
+    "DPES (Referencia)": {
+      "10": {
+        "time_ms": 0.0137,
+        "comps": 45,
+        "moves": 63
+      },
+      "50": {
+        "time_ms": 0.0743,
+        "comps": 453,
+        "moves": 240
+      },
+      "100": {
+        "time_ms": 0.3804,
+        "comps": 890,
+        "moves": 336
+      },
+      "250": {
+        "time_ms": 0.9237,
+        "comps": 2978,
+        "moves": 731
+      },
+      "500": {
+        "time_ms": 0.9946,
+        "comps": 7541,
+        "moves": 1347
+      },
+      "1000": {
+        "time_ms": 5.3823,
+        "comps": 15258,
+        "moves": 2892
+      }
+    },
+    "ACPS (Nosso Autoral)": {
+      "10": {
+        "time_ms": 0.0043,
+        "comps": 9,
+        "moves": 10
+      },
+      "50": {
+        "time_ms": 0.0123,
+        "comps": 49,
+        "moves": 50
+      },
+      "100": {
+        "time_ms": 0.0884,
+        "comps": 99,
+        "moves": 100
+      },
+      "250": {
+        "time_ms": 0.1669,
+        "comps": 249,
+        "moves": 250
+      },
+      "500": {
+        "time_ms": 0.1267,
+        "comps": 499,
+        "moves": 500
+      },
+      "1000": {
+        "time_ms": 0.7487,
+        "comps": 999,
+        "moves": 1000
+      }
+    }
+  },
+  "duplicates": {
+    "Bubble Sort": {
+      "10": {
+        "time_ms": 0.0168,
+        "comps": 43,
+        "moves": 42
+      },
+      "50": {
+        "time_ms": 0.3494,
+        "comps": 1153,
+        "moves": 984
+      },
+      "100": {
+        "time_ms": 1.5215,
+        "comps": 4733,
+        "moves": 3932
+      },
+      "250": {
+        "time_ms": 8.2206,
+        "comps": 29586,
+        "moves": 25316
+      },
+      "500": {
+        "time_ms": 24.7832,
+        "comps": 119515,
+        "moves": 98745
+      },
+      "1000": {
+        "time_ms": 133.4182,
+        "comps": 477445,
+        "moves": 398264
+      }
+    },
+    "Selection Sort": {
+      "10": {
+        "time_ms": 0.0106,
+        "comps": 45,
+        "moves": 10
+      },
+      "50": {
+        "time_ms": 0.2084,
+        "comps": 1225,
+        "moves": 74
+      },
+      "100": {
+        "time_ms": 0.6946,
+        "comps": 4950,
+        "moves": 150
+      },
+      "250": {
+        "time_ms": 4.4495,
+        "comps": 31125,
+        "moves": 392
+      },
+      "500": {
+        "time_ms": 14.6955,
+        "comps": 124750,
+        "moves": 795
+      },
+      "1000": {
+        "time_ms": 57.0817,
+        "comps": 499500,
+        "moves": 1583
+      }
+    },
+    "Insertion Sort": {
+      "10": {
+        "time_ms": 0.0094,
+        "comps": 27,
+        "moves": 37
+      },
+      "50": {
+        "time_ms": 0.1696,
+        "comps": 564,
+        "moves": 614
+      },
+      "100": {
+        "time_ms": 0.6366,
+        "comps": 2005,
+        "moves": 2105
+      },
+      "250": {
+        "time_ms": 3.9349,
+        "comps": 13248,
+        "moves": 13498
+      },
+      "500": {
+        "time_ms": 15.4724,
+        "comps": 51225,
+        "moves": 51726
+      },
+      "1000": {
+        "time_ms": 49.2004,
+        "comps": 203598,
+        "moves": 204600
+      }
+    },
+    "Merge Sort": {
+      "10": {
+        "time_ms": 0.028,
+        "comps": 23,
+        "moves": 34
+      },
+      "50": {
+        "time_ms": 0.2054,
+        "comps": 210,
+        "moves": 286
+      },
+      "100": {
+        "time_ms": 0.4735,
+        "comps": 518,
+        "moves": 672
+      },
+      "250": {
+        "time_ms": 1.3085,
+        "comps": 1590,
+        "moves": 1994
+      },
+      "500": {
+        "time_ms": 2.9009,
+        "comps": 3628,
+        "moves": 4488
+      },
+      "1000": {
+        "time_ms": 5.2842,
+        "comps": 8129,
+        "moves": 9976
+      }
+    },
+    "Quick Sort": {
+      "10": {
+        "time_ms": 0.0199,
+        "comps": 42,
+        "moves": 33
+      },
+      "50": {
+        "time_ms": 0.1364,
+        "comps": 310,
+        "moves": 222
+      },
+      "100": {
+        "time_ms": 0.3046,
+        "comps": 736,
+        "moves": 513
+      },
+      "250": {
+        "time_ms": 0.8481,
+        "comps": 2114,
+        "moves": 1560
+      },
+      "500": {
+        "time_ms": 1.9494,
+        "comps": 4686,
+        "moves": 3544
+      },
+      "1000": {
+        "time_ms": 3.9142,
+        "comps": 10697,
+        "moves": 8028
+      }
+    },
+    "DPES (Referencia)": {
+      "10": {
+        "time_ms": 0.0199,
+        "comps": 31,
+        "moves": 41
+      },
+      "50": {
+        "time_ms": 0.1324,
+        "comps": 356,
+        "moves": 182
+      },
+      "100": {
+        "time_ms": 0.4069,
+        "comps": 813,
+        "moves": 196
+      },
+      "250": {
+        "time_ms": 0.5827,
+        "comps": 2076,
+        "moves": 419
+      },
+      "500": {
+        "time_ms": 1.1928,
+        "comps": 4199,
+        "moves": 836
+      },
+      "1000": {
+        "time_ms": 2.5867,
+        "comps": 8383,
+        "moves": 1689
+      }
+    },
+    "ACPS (Nosso Autoral)": {
+      "10": {
+        "time_ms": 0.018,
+        "comps": 27,
+        "moves": 34
+      },
+      "50": {
+        "time_ms": 0.139,
+        "comps": 302,
+        "moves": 227
+      },
+      "100": {
+        "time_ms": 0.3248,
+        "comps": 582,
+        "moves": 358
+      },
+      "250": {
+        "time_ms": 1.0788,
+        "comps": 2449,
+        "moves": 1879
+      },
+      "500": {
+        "time_ms": 3.2091,
+        "comps": 7329,
+        "moves": 5887
+      },
+      "1000": {
+        "time_ms": 15.9277,
+        "comps": 35971,
+        "moves": 33488
+      }
+    }
+  },
+  "almost_sorted": {
+    "Bubble Sort": {
+      "10": {
+        "time_ms": 0.0121,
+        "comps": 27,
+        "moves": 9
+      },
+      "50": {
+        "time_ms": 0.2023,
+        "comps": 934,
+        "moves": 131
+      },
+      "100": {
+        "time_ms": 0.4401,
+        "comps": 4234,
+        "moves": 658
+      },
+      "250": {
+        "time_ms": 5.4468,
+        "comps": 29756,
+        "moves": 4266
+      },
+      "500": {
+        "time_ms": 20.7925,
+        "comps": 119169,
+        "moves": 15781
+      },
+      "1000": {
+        "time_ms": 81.0841,
+        "comps": 483968,
+        "moves": 61820
+      }
+    },
+    "Selection Sort": {
+      "10": {
+        "time_ms": 0.0163,
+        "comps": 45,
+        "moves": 1
+      },
+      "50": {
+        "time_ms": 0.2038,
+        "comps": 1225,
+        "moves": 4
+      },
+      "100": {
+        "time_ms": 0.5273,
+        "comps": 4950,
+        "moves": 10
+      },
+      "250": {
+        "time_ms": 4.5366,
+        "comps": 31125,
+        "moves": 24
+      },
+      "500": {
+        "time_ms": 16.5571,
+        "comps": 124750,
+        "moves": 50
+      },
+      "1000": {
+        "time_ms": 68.3676,
+        "comps": 499500,
+        "moves": 100
+      }
+    },
+    "Insertion Sort": {
+      "10": {
+        "time_ms": 0.0103,
+        "comps": 17,
+        "moves": 26
+      },
+      "50": {
+        "time_ms": 0.0516,
+        "comps": 106,
+        "moves": 155
+      },
+      "100": {
+        "time_ms": 0.1256,
+        "comps": 396,
+        "moves": 495
+      },
+      "250": {
+        "time_ms": 0.4523,
+        "comps": 2060,
+        "moves": 2310
+      },
+      "500": {
+        "time_ms": 2.0083,
+        "comps": 7557,
+        "moves": 8056
+      },
+      "1000": {
+        "time_ms": 8.7347,
+        "comps": 32943,
+        "moves": 33942
+      }
+    },
+    "Merge Sort": {
+      "10": {
+        "time_ms": 0.0377,
+        "comps": 16,
+        "moves": 34
+      },
+      "50": {
+        "time_ms": 0.2904,
+        "comps": 152,
+        "moves": 286
+      },
+      "100": {
+        "time_ms": 0.5772,
+        "comps": 416,
+        "moves": 672
+      },
+      "250": {
+        "time_ms": 1.1208,
+        "comps": 1343,
+        "moves": 1994
+      },
+      "500": {
+        "time_ms": 2.4228,
+        "comps": 3191,
+        "moves": 4488
+      },
+      "1000": {
+        "time_ms": 7.0538,
+        "comps": 7612,
+        "moves": 9976
+      }
+    },
+    "Quick Sort": {
+      "10": {
+        "time_ms": 0.0291,
+        "comps": 40,
+        "moves": 28
+      },
+      "50": {
+        "time_ms": 0.1844,
+        "comps": 348,
+        "moves": 130
+      },
+      "100": {
+        "time_ms": 0.1452,
+        "comps": 815,
+        "moves": 271
+      },
+      "250": {
+        "time_ms": 0.5586,
+        "comps": 2199,
+        "moves": 602
+      },
+      "500": {
+        "time_ms": 1.6147,
+        "comps": 4858,
+        "moves": 1292
+      },
+      "1000": {
+        "time_ms": 3.2084,
+        "comps": 10935,
+        "moves": 2656
+      }
+    },
+    "DPES (Referencia)": {
+      "10": {
+        "time_ms": 0.0163,
+        "comps": 12,
+        "moves": 22
+      },
+      "50": {
+        "time_ms": 0.1722,
+        "comps": 322,
+        "moves": 101
+      },
+      "100": {
+        "time_ms": 0.1103,
+        "comps": 776,
+        "moves": 243
+      },
+      "250": {
+        "time_ms": 1.003,
+        "comps": 2855,
+        "moves": 820
+      },
+      "500": {
+        "time_ms": 2.481,
+        "comps": 7415,
+        "moves": 1954
+      },
+      "1000": {
+        "time_ms": 4.6752,
+        "comps": 15877,
+        "moves": 5328
+      }
+    },
+    "ACPS (Nosso Autoral)": {
+      "10": {
+        "time_ms": 0.0184,
+        "comps": 16,
+        "moves": 20
+      },
+      "50": {
+        "time_ms": 0.1324,
+        "comps": 203,
+        "moves": 116
+      },
+      "100": {
+        "time_ms": 0.0878,
+        "comps": 522,
+        "moves": 294
+      },
+      "250": {
+        "time_ms": 0.7226,
+        "comps": 1688,
+        "moves": 805
+      },
+      "500": {
+        "time_ms": 1.6829,
+        "comps": 4058,
+        "moves": 1921
+      },
+      "1000": {
+        "time_ms": 3.2595,
+        "comps": 9390,
+        "moves": 4820
+      }
+    }
+  }
+}

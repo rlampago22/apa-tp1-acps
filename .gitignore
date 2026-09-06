@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Relatórios e Apresentações (Conforme instrução: apenas códigos e README no repositório)
+*.pptx
+*.pdf
+*.docx
+slides_preview/
+RELATORIO_TECNICO_TP1.*
+SLIDES_APRESENTACAO_TP1.*
+GUIA_MESTRE_DO_ALGORITMO_ACPS.*
+
+# Scripts temporários de diagnóstico e teste
+diag_*.py
+test_each_slide.py
+find_*.py
+isolate_*.py
+locate_*.py
+debug_*.py
+build_*.py
+generate_*.py
+export_*.py
+test_tbl_fill.pptx
+s1_only.pptx
+
+# Ambientes virtuais e IDEs
+.venv/
+venv/
+.idea/
+.vscode/
