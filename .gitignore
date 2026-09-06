@@ -22,6 +22,7 @@ debug_*.py
 build_*.py
 generate_*.py
 export_*.py
+get_slidesgo_info.py
 test_tbl_fill.pptx
 s1_only.pptx
 
