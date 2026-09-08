@@ -13,10 +13,16 @@ Valida todos os cenários obrigatórios e de estresse descritos no edital:
 8. Teste de análise de estabilidade
 """
 
+import os
 import random
 import sys
 import unittest
 from typing import List
+
+# Adiciona o diretório src ao path para permitir execução de qualquer pasta
+SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src"))
+if SRC_DIR not in sys.path:
+    sys.path.insert(0, SRC_DIR)
 
 from authorial_acps import acps_sort
 

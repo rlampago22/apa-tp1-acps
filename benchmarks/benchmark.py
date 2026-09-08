@@ -21,6 +21,12 @@ import matplotlib
 matplotlib.use("Agg")  # Garante renderização headless sem abrir janelas GUI
 import matplotlib.pyplot as plt
 
+# Adiciona o diretório src ao path para permitir execução de qualquer pasta
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+SRC_DIR = os.path.join(REPO_ROOT, "src")
+if SRC_DIR not in sys.path:
+    sys.path.insert(0, SRC_DIR)
+
 from algorithms_baseline import (
     bubble_sort,
     selection_sort,
@@ -243,10 +249,14 @@ def plot_dedicated_metrics(results: Dict[str, Any], output_prefix: str = "benchm
 # MAIN CLI
 # =============================================================================
 def main():
+    default_plot = os.path.join(REPO_ROOT, "assets", "benchmark_results.png")
+    default_json = os.path.join(REPO_ROOT, "data", "benchmark_data.json")
+    default_prefix = os.path.join(REPO_ROOT, "assets", "benchmark")
+
     parser = argparse.ArgumentParser(description="Benchmark de Algoritmos de Ordenação — APA")
     parser.add_argument("--trials", type=int, default=5, help="Número de repetições por teste (padrão: 5)")
-    parser.add_argument("--plot", type=str, default="benchmark_results.png", help="Caminho para salvar o gráfico principal")
-    parser.add_argument("--export_json", type=str, default="benchmark_data.json", help="Arquivo JSON de saída com os dados brutos")
+    parser.add_argument("--plot", type=str, default=default_plot, help="Caminho para salvar o gráfico principal")
+    parser.add_argument("--export_json", type=str, default=default_json, help="Arquivo JSON de saída com os dados brutos")
     args = parser.parse_args()
 
     algorithms = {
@@ -267,9 +277,10 @@ def main():
     results = run_benchmark(algorithms, sizes, distributions, trials=args.trials)
     print_markdown_summary(results, sizes)
     plot_benchmark_results(results, args.plot)
-    plot_dedicated_metrics(results, "benchmark")
+    plot_dedicated_metrics(results, default_prefix)
 
     # Exportação dos dados brutos em JSON para reprodutibilidade
+    os.makedirs(os.path.dirname(args.export_json), exist_ok=True)
     with open(args.export_json, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
     print(f"[OK] Dados brutos salvos em JSON: {args.export_json}")
