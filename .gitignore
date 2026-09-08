@@ -11,6 +11,8 @@ slides_preview/
 RELATORIO_TECNICO_TP1.*
 SLIDES_APRESENTACAO_TP1.*
 GUIA_MESTRE_DO_ALGORITMO_ACPS.*
+documentos/
+scripts/
 
 # Scripts temporários de diagnóstico e teste
 diag_*.py
