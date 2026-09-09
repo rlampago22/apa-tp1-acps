@@ -3,13 +3,13 @@ Adaptive Centripetal Pincer Sort (ACPS)
 Algoritmo de Ordenação Autoral — Trabalho Prático 1 (TP1)
 Disciplina: Análise e Projetos de Algoritmos (APA) — UNIPAMPA
 
-Autores: Solução Autoral Acadêmica
+Autores: Marcus Vinicius Morini Querol Junior e Vinicius Da Silva Gonçalves
 Complexidade:
     - Melhor Caso:  Omega(N)
     - Caso Médio:   Theta(N log N)
     - Pior Caso:    O(N^2)
     - Espaço:       O(1) auxiliar in-place (O(log N) na pilha de chamadas)
-    - Estabilidade: Instável (trocas simétricas centrípetas in-place)
+    - Estabilidade: Instável (trocas distantes para priorizar velocidade)
 """
 
 from typing import Any, List, Tuple
@@ -17,7 +17,7 @@ from typing import Any, List, Tuple
 
 def acps_sort(arr: List[Any]) -> Tuple[List[Any], int, int]:
     """
-    Executa a Ordenação por Pinça Centrípeta Adaptativa (ACPS).
+    Executa a Ordenação ACPS (Adaptive Centripetal Pincer Sort).
 
     Parâmetros:
         arr (List[Any]): Lista de entrada contendo elementos comparáveis.
@@ -35,8 +35,8 @@ def acps_sort(arr: List[Any]) -> Tuple[List[Any], int, int]:
     INSERTION_THRESHOLD = 16
 
     # =========================================================================
-    # FASE 1: SONDAGEM E COLHEITA POR PINÇA (PINCER DIAGNOSTIC SCAN)
-    # Avalia em O(N) se o vetor já possui monotonicidade global.
+    # ETAPA 1: SONDAGEM INICIAL PELAS PONTAS (DOIS PONTEIROS)
+    # Avalia em O(N) se o vetor já está ordenado ou invertido.
     # =========================================================================
     is_sorted = True
     is_reverse = True
@@ -89,7 +89,7 @@ def acps_sort(arr: List[Any]) -> Tuple[List[Any], int, int]:
             moves[0] += 1
 
     # =========================================================================
-    # FASE 3: RECURSÃO CENTRÍPETA TRIPARTITE COM CONGELAMENTO DE PLATÔ
+    # ETAPA 3: PARTICIONAMENTO EM TRÊS FAIXAS COM PROTEÇÃO PARA DADOS REPETIDOS
     # =========================================================================
     def _sort_recursive(low: int, high: int) -> None:
         if low >= high:
@@ -100,7 +100,7 @@ def acps_sort(arr: List[Any]) -> Tuple[List[Any], int, int]:
             _insertion_sort(low, high)
             return
 
-        # 3.1. Amostragem Quíntupla Centrípeta para Seleção de Pivôs Trimodais
+        # 3.1. Amostragem Posicional de 5 Pontos para Seleção Rápida de Dois Pivôs
         sample_indices = [
             low,
             low + size // 4,

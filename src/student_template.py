@@ -3,7 +3,7 @@ TEMPLATE PARA O ALUNO — TRABALHO PRÁTICO 1 (TP1)
 Disciplina: Análise e Projetos de Algoritmos (APA) — UNIPAMPA
 
 ALGORITMO AUTORAL: Adaptive Centripetal Pincer Sort (ACPS)
-(Ordenação por Pinça Centrípeta Adaptativa)
+Autores: Marcus Vinicius Morini Querol Junior e Vinicius Da Silva Gonçalves
 
 Instruções do Enunciado:
 1. Implemente seu método de ordenação autoral na função `my_authorial_sort`.
@@ -20,24 +20,24 @@ def my_authorial_sort(arr: List[Any]) -> Tuple[List[Any], int, int]:
     ALGORITMO AUTORAL: Adaptive Centripetal Pincer Sort (ACPS).
 
     Concepção Autoral:
-    - Fase 1 (Sondagem Pincer em Omega(N)): Diagnóstico prévio simétrico a partir das
-      duas pontas do vetor. Se já estiver ordenado, encerra com N-1 comparações e 0 trocas;
-      se estiver estritamente decrescente, inverte in-place simetricamente em N/2 trocas;
-      se for homogêneo, encerra imediatamente.
-    - Fase 2 (Amostragem Trimodal Quíntupla em O(1)): Seleção de dois pivôs balanceados (p1 e p2)
-      nos percentis aproximados de 25% e 75% através de 5 amostras posicionais.
-    - Fase 3 (Particionamento Centrípeto Tripartite in-place): Divide o vetor em três zonas:
-      Zona Inferior (< p1), Zona Central (p1 <= x <= p2) e Zona Superior (> p2).
-    - Congelamento de Platô (Plateau Bypass): Se p1 == p2, a zona central inteira é congelada
-      e não sofre recursão, garantindo desempenho O(N) para vetores com chaves repetidas.
-    - Base Case Híbrido: Transição para Insertion Sort quando o tamanho do subproblema <= 16.
+    - Etapa 1 (Sondagem Inicial das Pontas em Omega(N)): Verificação com dois ponteiros.
+      Se já estiver ordenado, encerra com N-1 comparações e 0 trocas;
+      se estiver decrescente, inverte in-place em N/2 trocas;
+      se for homogêneo (todos iguais), encerra imediatamente.
+    - Etapa 2 (Amostragem Posicional de 5 Pontos em O(1)): Seleção rápida de dois pivôs (p1 e p2)
+      nos percentis de 25% e 75% usando 5 amostras fixas (início, 25%, 50%, 75% e fim).
+    - Etapa 3 (Particionamento em Três Faixas): Divide o vetor em três faixas:
+      menores que p1, miolo (p1 <= x <= p2) e maiores que p2.
+    - Proteção para Dados Repetidos: Se p1 == p2, o miolo inteiro é isolado
+      e não sofre recursão, garantindo excelente desempenho em vetores com chaves repetidas.
+    - Caso Base Híbrido: Transição para Insertion Sort quando o tamanho do subproblema <= 16.
 
     Complexidade:
         - Melhor Caso:  Omega(N)
         - Caso Médio:   Theta(N log N)
         - Pior Caso:    O(N^2)
         - Espaço:       O(1) auxiliar in-place (O(log N) na pilha de chamadas)
-        - Estabilidade: Instável (trocas centrípetas distantes)
+        - Estabilidade: Instável (trocas distantes para priorizar velocidade)
     """
     a = list(arr)
     n = len(a)
@@ -49,8 +49,8 @@ def my_authorial_sort(arr: List[Any]) -> Tuple[List[Any], int, int]:
     INSERTION_THRESHOLD = 16
 
     # =========================================================================
-    # FASE 1: SONDAGEM E COLHEITA POR PINÇA (PINCER DIAGNOSTIC SCAN)
-    # Avalia em O(N) se o vetor já possui monotonicidade global.
+    # ETAPA 1: SONDAGEM INICIAL PELAS PONTAS (DOIS PONTEIROS)
+    # Avalia em O(N) se o vetor já está ordenado ou invertido.
     # =========================================================================
     is_sorted = True
     is_reverse = True

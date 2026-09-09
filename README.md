@@ -14,12 +14,12 @@
 O **ACPS (Adaptive Centripetal Pincer Sort)** é um algoritmo de ordenação criado pela dupla para resolver uma fraqueza clássica do Quick Sort: a lentidão quando o vetor já vem ordenado ou invertido.
 
 O ACPS funciona em 3 passos principais:
-1. **Sondagem pelas Pontas (Pinça Centrípeta em tempo linear $\Omega(N)$):**  
-   Antes de começar a dividir o vetor, ele faz uma checagem rápida com dois ponteiros (um no início e um no fim). Se o vetor já estiver ordenado, o algoritmo encerra na hora sem fazer nenhuma troca. Se o vetor estiver de trás para frente (invertido), ele apenas inverte os elementos no próprio lugar em $N/2$ passos, sem precisar de recursão.
+1. **Sondagem Inicial com Dois Ponteiros (tempo linear $\Omega(N)$):**  
+   Antes de começar a dividir o vetor, o algoritmo faz uma verificação simples pelas duas pontas (um ponteiro no início e outro no fim). Se o vetor já estiver em ordem crescente, o algoritmo encerra na hora sem fazer nenhuma troca. Se estiver invertido (decrescente), ele apenas inverte as posições no próprio lugar em $N/2$ passos, sem precisar de recursão.
 2. **Escolha Rápida de Dois Pivôs ($O(1)$):**  
-   Em vez de percorrer o vetor inteiro procurando valores mínimo e máximo (como faz o algoritmo DPES do professor, gastando muitas comparações), o ACPS apenas olha 5 posições fixas (início, 25%, meio, 75% e fim) e escolhe dois bons pivôs rapidamente.
-3. **Divisão em Três Partes e Proteção contra Iguais (Platô Bypass):**  
-   O vetor é separado em três partes: menores que o primeiro pivô, elementos entre os pivôs e maiores que o segundo pivô. Se os dois pivôs forem iguais (vetor com muitos números repetidos), o miolo é congelado imediatamente, evitando chamadas repetidas desnecessárias.
+   Em vez de percorrer o vetor inteiro procurando valores de mínimo e máximo a cada partição (como faz o algoritmo DPES do professor, gastando muitas comparações), o ACPS apenas olha 5 posições fixas (início, 25%, 50%, 75% e fim) e escolhe dois bons pivôs rapidamente.
+3. **Divisão em Três Faixas com Proteção para Dados Repetidos:**  
+   O vetor é dividido em três faixas: números menores que o primeiro pivô, miolo entre os pivôs e números maiores que o segundo pivô. Se os dois pivôs amostrados forem iguais (vetor com muitos números repetidos), o miolo é isolado imediatamente, evitando chamadas recursivas desnecessárias sobre dados duplicados.
 
 ---
 
