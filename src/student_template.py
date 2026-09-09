@@ -1,6 +1,6 @@
 """
-TEMPLATE PARA O ALUNO — TRABALHO PRÁTICO 1 (TP1)
-Disciplina: Análise e Projetos de Algoritmos (APA) — UNIPAMPA
+TEMPLATE PARA O ALUNO -  TRABALHO PRÁTICO 1 (TP1)
+Disciplina: Análise e Projetos de Algoritmos (APA) -  UNIPAMPA
 
 ALGORITMO AUTORAL: Adaptive Centripetal Pincer Sort (ACPS)
 Autores: Marcus Vinicius Morini Querol Junior e Vinicius Da Silva Gonçalves
@@ -20,24 +20,24 @@ def my_authorial_sort(arr: List[Any]) -> Tuple[List[Any], int, int]:
     ALGORITMO AUTORAL: Adaptive Centripetal Pincer Sort (ACPS).
 
     Concepção Autoral:
-    - Etapa 1 (Sondagem Inicial das Pontas em Omega(N)): Verificação com dois ponteiros.
+   - Etapa 1 (Sondagem Inicial das Pontas em Omega(N)): Verificação com dois ponteiros.
       Se já estiver ordenado, encerra com N-1 comparações e 0 trocas;
       se estiver decrescente, inverte in-place em N/2 trocas;
       se for homogêneo (todos iguais), encerra imediatamente.
-    - Etapa 2 (Amostragem Posicional de 5 Pontos em O(1)): Seleção rápida de dois pivôs (p1 e p2)
+   - Etapa 2 (Amostragem Posicional de 5 Pontos em O(1)): Seleção rápida de dois pivôs (p1 e p2)
       nos percentis de 25% e 75% usando 5 amostras fixas (início, 25%, 50%, 75% e fim).
-    - Etapa 3 (Particionamento em Três Faixas): Divide o vetor em três faixas:
+   - Etapa 3 (Particionamento em Três Faixas): Divide o vetor em três faixas:
       menores que p1, miolo (p1 <= x <= p2) e maiores que p2.
-    - Proteção para Dados Repetidos: Se p1 == p2, o miolo inteiro é isolado
+   - Proteção para Dados Repetidos: Se p1 == p2, o miolo inteiro é isolado
       e não sofre recursão, garantindo excelente desempenho em vetores com chaves repetidas.
-    - Caso Base Híbrido: Transição para Insertion Sort quando o tamanho do subproblema <= 16.
+   - Caso Base Híbrido: Transição para Insertion Sort quando o tamanho do subproblema <= 16.
 
     Complexidade:
-        - Melhor Caso:  Omega(N)
-        - Caso Médio:   Theta(N log N)
-        - Pior Caso:    O(N^2)
-        - Espaço:       O(1) auxiliar in-place (O(log N) na pilha de chamadas)
-        - Estabilidade: Instável (trocas distantes para priorizar velocidade)
+       - Melhor Caso:  Omega(N)
+       - Caso Médio:   Theta(N log N)
+       - Pior Caso:    O(N^2)
+       - Espaço:       O(1) auxiliar in-place (O(log N) na pilha de chamadas)
+       - Estabilidade: Instável (trocas distantes para priorizar velocidade)
     """
     a = list(arr)
     n = len(a)

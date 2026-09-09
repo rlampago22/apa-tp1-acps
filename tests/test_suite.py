@@ -1,6 +1,6 @@
 """
-Suíte de Testes Obrigatória — TP1: Métodos de Ordenação Autorais
-Disciplina: Análise e Projetos de Algoritmos (APA) — UNIPAMPA
+Suíte de Testes Obrigatória -  TP1: Métodos de Ordenação Autorais
+Disciplina: Análise e Projetos de Algoritmos (APA) -  UNIPAMPA
 
 Valida todos os cenários obrigatórios e de estresse descritos no edital:
 1. Vetores vazios (N = 0) e unitários (N = 1)
@@ -168,7 +168,7 @@ class ComprehensiveTestSuite(unittest.TestCase):
 
 if __name__ == "__main__":
     print("=" * 70)
-    print(" SUITE RIGOROSA DE TESTES DE CORRETUDE — ACPS (TP1 - APA)")
+    print(" SUITE RIGOROSA DE TESTES DE CORRETUDE -  ACPS (TP1 - APA)")
     print("=" * 70)
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(ComprehensiveTestSuite)
     runner = unittest.TextTestRunner(verbosity=2)

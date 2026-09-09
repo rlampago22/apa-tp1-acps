@@ -1,15 +1,15 @@
 """
 Adaptive Centripetal Pincer Sort (ACPS)
-Algoritmo de Ordenação Autoral — Trabalho Prático 1 (TP1)
-Disciplina: Análise e Projetos de Algoritmos (APA) — UNIPAMPA
+Algoritmo de Ordenação Autoral -  Trabalho Prático 1 (TP1)
+Disciplina: Análise e Projetos de Algoritmos (APA) -  UNIPAMPA
 
 Autores: Marcus Vinicius Morini Querol Junior e Vinicius Da Silva Gonçalves
 Complexidade:
-    - Melhor Caso:  Omega(N)
-    - Caso Médio:   Theta(N log N)
-    - Pior Caso:    O(N^2)
-    - Espaço:       O(1) auxiliar in-place (O(log N) na pilha de chamadas)
-    - Estabilidade: Instável (trocas distantes para priorizar velocidade)
+   - Melhor Caso:  Omega(N)
+   - Caso Médio:   Theta(N log N)
+   - Pior Caso:    O(N^2)
+   - Espaço:       O(1) auxiliar in-place (O(log N) na pilha de chamadas)
+   - Estabilidade: Instável (trocas distantes para priorizar velocidade)
 """
 
 from typing import Any, List, Tuple

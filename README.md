@@ -1,6 +1,6 @@
 # Adaptive Centripetal Pincer Sort (ACPS)
-### Trabalho Prático 1 (TP1) — Métodos de Ordenação Autorais
-**Universidade Federal do Pampa (UNIPAMPA) — Campus Alegrete**  
+### Trabalho Prático 1 (TP1): Métodos de Ordenação Autorais
+**Universidade Federal do Pampa (UNIPAMPA) - Campus Alegrete**  
 **Disciplina:** Análise e Projetos de Algoritmos (APA)  
 **Professor:** Dr. Marcelo Caggiani Luizelli  
 **Alunos (Dupla):**  
@@ -71,8 +71,8 @@ Este gráfico mostra o que acontece quando o vetor já está **ordenado** ou **i
   * **Selection Sort:** 499.500 comparações (tempo: 367 ms).
 * **Vetor Invertido ($N = 1.000$):**
   * **ACPS:** apenas **999 comparações** e $N/2$ trocas (tempo: **0,74 ms**).
-  * **Bubble Sort:** 499.500 comparações (tempo: 886 ms — 1.100x mais lento).
-  * **Insertion Sort:** 499.500 comparações (tempo: 321 ms — 400x mais lento).
+  * **Bubble Sort:** 499.500 comparações (tempo: 886 ms  -  1.100x mais lento).
+  * **Insertion Sort:** 499.500 comparações (tempo: 321 ms  -  400x mais lento).
 
 ---
 
