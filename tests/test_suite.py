@@ -1,176 +1,225 @@
-"""
-Suíte de Testes Obrigatória — TP1: Métodos de Ordenação Autorais
-Disciplina: Análise e Projetos de Algoritmos (APA) — UNIPAMPA
+"""Suite de corretude, propriedades e instrumentacao do ACPS."""
 
-Valida todos os cenários obrigatórios e de estresse descritos no edital:
-1. Vetores vazios (N = 0) e unitários (N = 1)
-2. Vetores já ordenados (melhor caso / sensibilidade)
-3. Vetores em ordem estritamente reversa (pior caso / estresse)
-4. Vetores com elementos idênticos e redundantes (colisões / platôs)
-5. Vetores quase ordenados (perturbações locais)
-6. Vetores com tipos numéricos diversos (negativos, floats)
-7. Vetores aleatórios homogêneos em escala crescente (N = 10, 100, 1000, 5000)
-8. Teste de análise de estabilidade
-"""
-
+import itertools
 import os
 import random
 import sys
 import unittest
-from typing import List
+from typing import Any, List
 
-# Adiciona o diretório src ao path para permitir execução de qualquer pasta
 SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src"))
 if SRC_DIR not in sys.path:
     sys.path.insert(0, SRC_DIR)
 
+from algorithms_baseline import (
+    bubble_sort,
+    dpes_sort,
+    insertion_sort,
+    merge_sort,
+    quick_sort,
+    selection_sort,
+)
 from authorial_acps import acps_sort
 
 
+class CountedKey:
+    """Chave que registra as avaliacoes relacionais feitas pelo algoritmo."""
+
+    relational_calls = 0
+
+    def __init__(self, key: int, original_position: int = 0):
+        self.key = key
+        self.original_position = original_position
+
+    @classmethod
+    def reset(cls) -> None:
+        cls.relational_calls = 0
+
+    def __lt__(self, other: "CountedKey") -> bool:
+        type(self).relational_calls += 1
+        return self.key < other.key
+
+    def __gt__(self, other: "CountedKey") -> bool:
+        type(self).relational_calls += 1
+        return self.key > other.key
+
+    def __ne__(self, other: "CountedKey") -> bool:
+        type(self).relational_calls += 1
+        return self.key != other.key
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, CountedKey):
+            return NotImplemented
+        return (
+            self.key == other.key
+            and self.original_position == other.original_position
+        )
+
+    def __repr__(self) -> str:
+        return f"CountedKey({self.key}, {self.original_position})"
+
+
 class ComprehensiveTestSuite(unittest.TestCase):
-    def setUp(self):
-        random.seed(42)
+    def setUp(self) -> None:
+        self.generator = random.Random(42)
 
-    def assert_is_sorted(self, original: List, result: List):
-        self.assertEqual(len(result), len(original), "Erro: Tamanho da saída difere da entrada!")
-        expected = sorted(original)
-        self.assertEqual(result, expected, "Erro: A lista resultante não está devidamente ordenada!")
+    def assert_is_sorted(self, original: List[Any], result: List[Any]) -> None:
+        self.assertEqual(len(result), len(original))
+        self.assertEqual(result, sorted(original))
 
-    # -------------------------------------------------------------------------
-    # 1. CASOS LIMITES (EDGE CASES)
-    # -------------------------------------------------------------------------
     def test_01_empty_array(self):
-        """Valida comportamento para N = 0."""
-        res, comps, moves = acps_sort([])
-        self.assert_is_sorted([], res)
-        self.assertEqual(comps, 0)
-        self.assertEqual(moves, 0)
+        result, comparisons, movements = acps_sort([])
+        self.assertEqual(result, [])
+        self.assertEqual(comparisons, 0)
+        self.assertEqual(movements, 0)
 
     def test_02_single_element(self):
-        """Valida comportamento para N = 1."""
-        res, comps, moves = acps_sort([42])
-        self.assert_is_sorted([42], res)
-        self.assertEqual(comps, 0)
-        self.assertEqual(moves, 0)
+        result, comparisons, movements = acps_sort([42])
+        self.assertEqual(result, [42])
+        self.assertEqual(comparisons, 0)
+        self.assertEqual(movements, 0)
 
     def test_03_two_elements_sorted(self):
-        """Valida comportamento para N = 2 já ordenado."""
-        res, comps, moves = acps_sort([10, 20])
-        self.assert_is_sorted([10, 20], res)
+        result, _, _ = acps_sort([10, 20])
+        self.assertEqual(result, [10, 20])
 
     def test_04_two_elements_inverted(self):
-        """Valida comportamento para N = 2 invertido."""
-        res, comps, moves = acps_sort([20, 10])
-        self.assert_is_sorted([20, 10], res)
+        result, _, _ = acps_sort([20, 10])
+        self.assertEqual(result, [10, 20])
 
-    # -------------------------------------------------------------------------
-    # 2. VETORES JÁ ORDENADOS (MELHOR CASO / SENSIBILIDADE)
-    # -------------------------------------------------------------------------
     def test_05_already_sorted_small(self):
         data = list(range(100))
-        res, comps, moves = acps_sort(data)
-        self.assert_is_sorted(data, res)
-        self.assertEqual(moves, 0, "Vetor já ordenado não deve realizar movimentações!")
-        self.assertEqual(comps, len(data) - 1, "Vetor ordenado deve ser detectado em N - 1 comparações!")
+        result, comparisons, movements = acps_sort(data)
+        self.assertEqual(result, data)
+        self.assertEqual(comparisons, len(data) - 1)
+        self.assertEqual(movements, 0)
 
     def test_06_already_sorted_large(self):
         data = list(range(1000))
-        res, comps, moves = acps_sort(data)
-        self.assert_is_sorted(data, res)
-        self.assertEqual(moves, 0)
-        self.assertEqual(comps, 999)
+        result, comparisons, movements = acps_sort(data)
+        self.assertEqual(result, data)
+        self.assertEqual(comparisons, 999)
+        self.assertEqual(movements, 0)
 
-    # -------------------------------------------------------------------------
-    # 3. VETORES ESTRITAMENTE REVERSOS
-    # -------------------------------------------------------------------------
     def test_07_reverse_small(self):
         data = list(range(100, 0, -1))
-        res, comps, moves = acps_sort(data)
-        self.assert_is_sorted(data, res)
-        self.assertEqual(comps, len(data) - 1)
-        self.assertEqual(moves, 2 * (len(data) // 2))
+        result, comparisons, movements = acps_sort(data)
+        self.assert_is_sorted(data, result)
+        self.assertEqual(comparisons, 2 * (len(data) - 1))
+        self.assertEqual(movements, 2 * (len(data) // 2))
 
     def test_08_reverse_large(self):
         data = list(range(1000, 0, -1))
-        res, comps, moves = acps_sort(data)
-        self.assert_is_sorted(data, res)
-        self.assertEqual(comps, 999)
-        self.assertEqual(moves, 1000)
+        result, comparisons, movements = acps_sort(data)
+        self.assert_is_sorted(data, result)
+        self.assertEqual(comparisons, 1998)
+        self.assertEqual(movements, 1000)
 
-    # -------------------------------------------------------------------------
-    # 4. ELEMENTOS IDÊNTICOS E REDUNDANTES (PLATÔS)
-    # -------------------------------------------------------------------------
     def test_09_all_identical(self):
         data = [7] * 250
-        res, comps, moves = acps_sort(data)
-        self.assert_is_sorted(data, res)
-        self.assertEqual(moves, 0)
-        self.assertEqual(comps, len(data) - 1)
+        result, comparisons, movements = acps_sort(data)
+        self.assertEqual(result, data)
+        self.assertEqual(comparisons, 2 * (len(data) - 1))
+        self.assertEqual(movements, 0)
 
     def test_10_high_duplicates_few_unique(self):
-        """Vetor de 500 elementos com apenas 3 chaves possíveis (0, 1, 2)."""
-        data = [random.choice([0, 1, 2]) for _ in range(500)]
-        res, _, _ = acps_sort(data)
-        self.assert_is_sorted(data, res)
+        data = [self.generator.choice([0, 1, 2]) for _ in range(500)]
+        result, _, _ = acps_sort(data)
+        self.assert_is_sorted(data, result)
 
     def test_11_repeated_blocks(self):
-        """Vetor com blocos idênticos consecutivos."""
         data = [10] * 50 + [2] * 50 + [50] * 50 + [25] * 50
-        res, _, _ = acps_sort(data)
-        self.assert_is_sorted(data, res)
+        result, _, _ = acps_sort(data)
+        self.assert_is_sorted(data, result)
 
-    # -------------------------------------------------------------------------
-    # 5. QUASE ORDENADOS (PERTURBAÇÃO LOCAL)
-    # -------------------------------------------------------------------------
     def test_12_almost_sorted(self):
-        """Vetor ordenado onde 5% dos elementos foram trocados de posição."""
         data = list(range(300))
         for _ in range(15):
-            i = random.randint(0, 299)
-            j = random.randint(0, 299)
+            i = self.generator.randint(0, 299)
+            j = self.generator.randint(0, 299)
             data[i], data[j] = data[j], data[i]
-        res, _, _ = acps_sort(data)
-        self.assert_is_sorted(data, res)
+        result, _, _ = acps_sort(data)
+        self.assert_is_sorted(data, result)
 
-    # -------------------------------------------------------------------------
-    # 6. DIVERSIDADE DE TIPOS NUMÉRICOS
-    # -------------------------------------------------------------------------
     def test_13_negative_and_positive(self):
-        data = [random.randint(-5000, 5000) for _ in range(300)]
-        res, _, _ = acps_sort(data)
-        self.assert_is_sorted(data, res)
+        data = [self.generator.randint(-5000, 5000) for _ in range(300)]
+        result, _, _ = acps_sort(data)
+        self.assert_is_sorted(data, result)
 
     def test_14_floating_point(self):
-        data = [random.uniform(-100.0, 100.0) for _ in range(250)]
-        res, _, _ = acps_sort(data)
-        self.assert_is_sorted(data, res)
+        data = [self.generator.uniform(-100.0, 100.0) for _ in range(250)]
+        result, _, _ = acps_sort(data)
+        self.assert_is_sorted(data, result)
 
-    # -------------------------------------------------------------------------
-    # 7. ESCALABILIDADE HOMOGÊNEA ALEATÓRIA
-    # -------------------------------------------------------------------------
     def test_15_random_scaling(self):
-        for n in [10, 50, 100, 250, 500, 1000, 2500]:
+        for n in [10, 100, 1000, 2500, 5000, 10000]:
             with self.subTest(n=n):
-                data = [random.randint(0, 100000) for _ in range(n)]
-                res, comps, moves = acps_sort(data)
-                self.assert_is_sorted(data, res)
-                self.assertGreater(comps, 0)
-                self.assertGreaterEqual(moves, 0)
+                data = [self.generator.randint(-10 * n, 10 * n) for _ in range(n)]
+                result, comparisons, movements = acps_sort(data)
+                self.assert_is_sorted(data, result)
+                self.assertGreater(comparisons, 0)
+                self.assertGreaterEqual(movements, 0)
 
-    # -------------------------------------------------------------------------
-    # 8. ESTRESSE COM N ELEVADO
-    # -------------------------------------------------------------------------
-    def test_16_stress_large(self):
-        data = [random.randint(-1000000, 1000000) for _ in range(5000)]
-        res, _, _ = acps_sort(data)
-        self.assert_is_sorted(data, res)
+    def test_16_non_increasing_with_duplicates(self):
+        data = [5, 5, 4, 4, 3, 3, 2, 2, 1, 1]
+        result, _, _ = acps_sort(data)
+        self.assert_is_sorted(data, result)
+
+    def test_17_binary_duplicates_avoid_quadratic_fallback(self):
+        n = 4096
+        data = [self.generator.randrange(2) for _ in range(n)]
+        result, comparisons, _ = acps_sort(data)
+        self.assert_is_sorted(data, result)
+        self.assertLess(comparisons, 20 * n)
+
+    def test_18_exhaustive_small_ternary_domain(self):
+        for n in range(8):
+            for values in itertools.product(range(3), repeat=n):
+                result, _, _ = acps_sort(list(values))
+                self.assertEqual(result, sorted(values))
+
+    def test_19_input_is_preserved_by_public_interface(self):
+        data = [3, 1, 2, 1]
+        original = list(data)
+        result, _, _ = acps_sort(data)
+        self.assertEqual(data, original)
+        self.assertEqual(result, sorted(original))
+        self.assertIsNot(result, data)
+
+    def test_20_comparison_counter_matches_relational_calls(self):
+        data = [CountedKey(value) for value in range(100, 0, -1)]
+        CountedKey.reset()
+        _, comparisons, _ = acps_sort(data)
+        self.assertEqual(comparisons, CountedKey.relational_calls)
+
+    def test_21_algorithm_is_not_stable(self):
+        values = [3, 3, 0, 2, 4, 3, 3, 2, 3, 2, 4, 1, 4, 1, 2, 1, 0, 4, 2, 4,
+                  4, 1, 2, 0, 0, 2, 3, 4, 0, 2, 3, 2, 4, 1, 4, 3, 3, 4, 2, 0]
+        data = [CountedKey(value, index) for index, value in enumerate(values)]
+        result, _, _ = acps_sort(data)
+        positions_by_key = {}
+        for item in result:
+            positions_by_key.setdefault(item.key, []).append(item.original_position)
+        self.assertTrue(
+            any(positions != sorted(positions) for positions in positions_by_key.values())
+        )
+
+    def test_22_classical_baselines_remain_correct(self):
+        data = [self.generator.randint(-100, 100) for _ in range(100)]
+        for algorithm in (
+            bubble_sort,
+            selection_sort,
+            insertion_sort,
+            merge_sort,
+            quick_sort,
+            dpes_sort,
+        ):
+            with self.subTest(algorithm=algorithm.__name__):
+                result, _, _ = algorithm(data)
+                self.assertEqual(result, sorted(data))
 
 
 if __name__ == "__main__":
-    print("=" * 70)
-    print(" SUITE RIGOROSA DE TESTES DE CORRETUDE — ACPS (TP1 - APA)")
-    print("=" * 70)
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(ComprehensiveTestSuite)
-    runner = unittest.TextTestRunner(verbosity=2)
-    result = runner.run(suite)
-    sys.exit(0 if result.wasSuccessful() else 1)
+    outcome = unittest.TextTestRunner(verbosity=2).run(suite)
+    sys.exit(0 if outcome.wasSuccessful() else 1)

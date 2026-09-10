@@ -141,71 +141,57 @@ def quick_sort(arr: List[Any]) -> Tuple[List[Any], int, int]:
     comps = [0]
     moves = [0]
 
+    def _less(left: Any, right: Any) -> bool:
+        comps[0] += 1
+        return left < right
+
+    def _greater(left: Any, right: Any) -> bool:
+        comps[0] += 1
+        return left > right
+
+    def _median_of_three(low: int, middle: int, high: int) -> Any:
+        x, y, z = a[low], a[middle], a[high]
+        if _less(x, y):
+            if _less(y, z):
+                return y
+            if _less(x, z):
+                return z
+            return x
+        if _less(x, z):
+            return x
+        if _less(y, z):
+            return z
+        return y
+
     def _quick_sort(low: int, high: int) -> None:
-        if low >= high:
-            return
+        while low < high:
+            i = low
+            j = high
+            middle = low + (high - low) // 2
+            pivot = _median_of_three(low, middle, high)
 
-        mid = low + (high - low) // 2
-        comps[0] += 1
-        if a[mid] < a[low]:
-            a[low], a[mid] = a[mid], a[low]
-            moves[0] += 2
-        comps[0] += 1
-        if a[high] < a[low]:
-            a[low], a[high] = a[high], a[low]
-            moves[0] += 2
-        comps[0] += 1
-        if a[high] < a[mid]:
-            a[mid], a[high] = a[high], a[mid]
-            moves[0] += 2
-
-        pivot = a[mid]
-        a[mid], a[high - 1] = a[high - 1], a[mid]
-        moves[0] += 2
-
-        i = low
-        j = high - 1
-
-        while True:
-            while True:
-                i += 1
-                comps[0] += 1
-                if a[i] >= pivot:
-                    break
-            while True:
-                j -= 1
-                comps[0] += 1
-                if a[j] <= pivot:
-                    break
-
-            if i >= j:
-                break
-
-            a[i], a[j] = a[j], a[i]
-            moves[0] += 2
-
-        a[i], a[high - 1] = a[high - 1], a[i]
-        moves[0] += 2
-
-        _quick_sort(low, i - 1)
-        _quick_sort(i + 1, high)
-
-    if n <= 3:
-        for i in range(1, n):
-            k = a[i]
-            moves[0] += 1
-            j = i - 1
-            while j >= 0:
-                comps[0] += 1
-                if a[j] > k:
-                    a[j + 1] = a[j]
-                    moves[0] += 1
+            while i <= j:
+                while _less(a[i], pivot):
+                    i += 1
+                while _greater(a[j], pivot):
                     j -= 1
-                else:
-                    break
-            a[j + 1] = k
-            moves[0] += 1
-        return a, comps[0], moves[0]
+                if i <= j:
+                    if i != j:
+                        a[i], a[j] = a[j], a[i]
+                        moves[0] += 2
+                    i += 1
+                    j -= 1
+
+            # Processa recursivamente a menor particao e elimina a chamada de
+            # cauda da maior, limitando a profundidade da pilha a O(log N).
+            if j - low < high - i:
+                if low < j:
+                    _quick_sort(low, j)
+                low = i
+            else:
+                if i < high:
+                    _quick_sort(i, high)
+                high = j
 
     _quick_sort(0, n - 1)
     return a, comps[0], moves[0]

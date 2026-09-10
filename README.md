@@ -1,132 +1,87 @@
-# Adaptive Centripetal Pincer Sort (ACPS)
-### Trabalho Prático 1 (TP1) — Métodos de Ordenação Autorais
-**Universidade Federal do Pampa (UNIPAMPA) — Campus Alegrete**  
-**Disciplina:** Análise e Projetos de Algoritmos (APA)  
-**Professor:** Dr. Marcelo Caggiani Luizelli  
-**Alunos (Dupla):**  
-- Marcus Vinicius Morini Querol Junior (Matrícula: 2510100176)  
-- Vinicius Da Silva Gonçalves (Matrícula: 2510100176)  
+# Adaptive Centripetal Pincer Sort
 
----
+Trabalho Prático 1 de Análise e Projeto de Algoritmos da Universidade Federal do Pampa, Campus Alegrete.
 
-## 💡 Sobre o Algoritmo ACPS
+Autores:
 
-O **ACPS (Adaptive Centripetal Pincer Sort)** é um algoritmo de ordenação criado pela dupla para resolver uma fraqueza clássica do Quick Sort: a lentidão quando o vetor já vem ordenado ou invertido.
+- Marcus Vinicius Morini Querol Junior
+- Vinicius Da Silva Goncalves
 
-O ACPS funciona em 3 passos principais:
-1. **Sondagem pelas Pontas (Pinça Centrípeta em tempo linear $\Omega(N)$):**  
-   Antes de começar a dividir o vetor, ele faz uma checagem rápida com dois ponteiros (um no início e um no fim). Se o vetor já estiver ordenado, o algoritmo encerra na hora sem fazer nenhuma troca. Se o vetor estiver de trás para frente (invertido), ele apenas inverte os elementos no próprio lugar em $N/2$ passos, sem precisar de recursão.
-2. **Escolha Rápida de Dois Pivôs ($O(1)$):**  
-   Em vez de percorrer o vetor inteiro procurando valores mínimo e máximo (como faz o algoritmo DPES do professor, gastando muitas comparações), o ACPS apenas olha 5 posições fixas (início, 25%, meio, 75% e fim) e escolhe dois bons pivôs rapidamente.
-3. **Divisão em Três Partes e Proteção contra Iguais (Platô Bypass):**  
-   O vetor é separado em três partes: menores que o primeiro pivô, elementos entre os pivôs e maiores que o segundo pivô. Se os dois pivôs forem iguais (vetor com muitos números repetidos), o miolo é congelado imediatamente, evitando chamadas repetidas desnecessárias.
+## Entregaveis
 
----
+- [`RELATORIO_TECNICO_TP1.md`](RELATORIO_TECNICO_TP1.md): relatório técnico completo e editavel.
+- [`output/pdf/relatorio_tecnico_acps.pdf`](output/pdf/relatorio_tecnico_acps.pdf): versao final em PDF.
+- [`src/authorial_acps.py`](src/authorial_acps.py): implementação canonica do ACPS.
+- [`src/student_template.py`](src/student_template.py): entrada compativel com o template da disciplina.
+- [`tests/test_suite.py`](tests/test_suite.py): 22 testes de corretude, propriedades e instrumentação.
+- [`benchmarks/benchmark.py`](benchmarks/benchmark.py): experimento reproduzivel.
+- [`data/benchmark_data.json`](data/benchmark_data.json): repetições individuais e estatísticas agregadas.
+- [`data/benchmark_summary.md`](data/benchmark_summary.md): resumo tabular dos resultados.
 
-## 📁 Organização do Repositório
+## Ideia do algoritmo
 
-O projeto está estruturado em pastas organizadas por responsabilidade:
+O ACPS e apresentado como uma adaptação estrutural autoral de Quick Sort com dois pivôs, e não como uma técnica sem antecedentes. O método combina:
 
-```text
-apa-tp1-acps/
-├── src/                         # Código-fonte dos algoritmos
-│   ├── authorial_acps.py        # Implementação completa do algoritmo autoral ACPS
-│   ├── student_template.py      # Template oficial da disciplina preenchido
-│   └── algorithms_baseline.py   # Algoritmos clássicos (Bubble, Selection, Insertion, Merge, Quick, DPES)
-├── tests/                       # Bateria de testes de corretude
-│   └── test_suite.py            # 16 cenários de estresse oficiais da disciplina
-├── benchmarks/                  # Scripts de avaliação experimental
-│   └── benchmark.py             # Script que roda 1.050 testes estatísticos e gera os gráficos
-├── assets/                      # Gráficos e imagens de resultados gerados
-│   ├── benchmark_results.png    # Painel completo com todos os cenários
-│   ├── benchmark_comps_bestcase.png # Foco nas comparações de melhor caso (ordenado e reverso)
-│   └── benchmark_time_focus.png # Foco de tempo nos algoritmos mais rápidos
-├── data/                        # Dados brutos dos testes
-│   └── benchmark_data.json      # Tempos, comparações e trocas em formato JSON
-├── README.md                    # Esta documentação
-└── .gitignore                   # Arquivos ignorados pelo controle de versão
-```
+1. sondagem linear de monotonicidade para reconhecer entradas não decrescentes e não crescentes;
+2. amostragem de cinco posições e escolha do segundo e quarto valores da amostra ordenada como limiares;
+3. particionamento centripeto em três zonas: menor, corredor central e maior;
+4. congelamento do corredor quando os limiares coincidem;
+5. fallback ternário pela mediana quando o particionamento dual não reduz o problema;
+6. Insertion Sort somente para segmentos com no máximo 16 elementos;
+7. processamento iterativo da maior partição para limitar a pilha a `O(log N)`.
 
----
+## Complexidade
 
-## 📈 Resultados dos Gráficos e Experimentos
+| Propriedade | ACPS |
+|---|---|
+| Melhor caso | `Theta(N)` |
+| Caso médio | `Theta(N log N)` sob permutação aleatória |
+| Pior caso | `Theta(N^2)` |
+| Espaco do núcleo | `O(log N)` de pilha; particionamento in-place |
+| Espaco total da interface | `Theta(N)`, pois a entrada e copiada |
+| Estável | Nao |
+| Preserva a entrada | Sim |
 
-Foram realizados **1.050 testes estatísticos** com vetores variando de $N=10$ até $N=1.000$ elementos, em 5 cenários diferentes: aleatório, já ordenado, invertido, com dados repetidos e quase ordenado.
+## Resultados principais
 
-### 1. Painel Geral de Resultados
-O gráfico abaixo compara o tempo de execução e o número de comparações de todos os algoritmos em todos os cenários:
+O benchmark final realizou 625 execuções medidas, com cinco repetições para cada combinação valida. Todos os algoritmos receberam a mesma entrada em cada repetição e toda saída foi comparada a `sorted(data)`.
 
-![Resultados Gerais de Benchmark](assets/benchmark_results.png)
+Para `N=10.000`:
 
----
+| Cenário | ACPS tempo médio | Comparacoes | Movimentacoes |
+|---|---:|---:|---:|
+| Aleatório | 119,748 ms | 156.558 | 133.011 |
+| Ordenado | 4,597 ms | 9.999 | 0 |
+| Reverso | 4,977 ms | 19.998 | 10.000 |
+| Cinco chaves repetidas | 9,942 ms | 55.573 | 20.793 |
+| Quase ordenado | 28,322 ms | 154.893 | 112.687 |
 
-### 2. Comparações no Melhor Caso: Linearidade Pura $\Omega(N)$
-Este gráfico mostra o que acontece quando o vetor já está **ordenado** ou **invertido**. Enquanto o Selection Sort explode em centenas de milhares de comparações ($N^2$), o ACPS forma uma reta quase encostada no zero ($N-1$ comparações):
+Tempos dependem da máquina e do estado do sistema. O JSON registra versoes, ambiente, sementes, repetições e desvio padrão.
 
-![Comparações de Melhor Caso](assets/benchmark_comps_bestcase.png)
+## Execucao
 
-* **Vetor Ordenado ($N = 1.000$):**
-  * **ACPS:** apenas **999 comparações** (tempo: **0,27 ms**).
-  * **Quick Sort clássico:** 11.399 comparações (tempo: 62 ms).
-  * **Selection Sort:** 499.500 comparações (tempo: 367 ms).
-* **Vetor Invertido ($N = 1.000$):**
-  * **ACPS:** apenas **999 comparações** e $N/2$ trocas (tempo: **0,74 ms**).
-  * **Bubble Sort:** 499.500 comparações (tempo: 886 ms — 1.100x mais lento).
-  * **Insertion Sort:** 499.500 comparações (tempo: 321 ms — 400x mais lento).
+Requer Python 3.10 ou superior.
 
----
-
-### 3. Foco nos Algoritmos Mais Rápidos (Tempo de Execução)
-Comparação direta entre os algoritmos de alta velocidade (ACPS, Quick Sort, Merge Sort e DPES):
-
-![Tempo de Execução nos Algoritmos Rápidos](assets/benchmark_time_focus.png)
-
-* **Em dados aleatórios desordenados ($N = 1.000$):**
-  * O ACPS fez **11.639 comparações**, empatando tecnicamente com o Quick Sort clássico (11.399) e superando o DPES de referência do professor (12.180).
-
----
-
-## 📊 Tabela Teórica de Complexidade
-
-| Algoritmo | Melhor Caso | Caso Médio | Pior Caso | Memória Auxiliar | In-Place? | Estável? |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Bubble Sort** | $\Omega(N)$ | $\Theta(N^2)$ | $O(N^2)$ | $O(1)$ | Sim | Sim |
-| **Selection Sort** | $\Omega(N^2)$ | $\Theta(N^2)$ | $O(N^2)$ | $O(1)$ | Sim | Não |
-| **Insertion Sort** | $\Omega(N)$ | $\Theta(N^2)$ | $O(N^2)$ | $O(1)$ | Sim | Sim |
-| **Merge Sort** | $\Omega(N \log N)$ | $\Theta(N \log N)$ | $O(N \log N)$ | $O(N)$ | Não | Sim |
-| **Quick Sort** | $\Omega(N \log N)$ | $\Theta(N \log N)$ | $O(N^2)$ | $O(\log N)$ | Sim | Não |
-| **DPES (Professor)** | $\Omega(N)$ | $\Theta(N \log N)$ | $O(N^2)$ | $O(1)$ | Sim | Não |
-| **ACPS (Nosso Autoral)** | **$\Omega(N)$** | **$\Theta(N \log N)$** | **$O(N^2)$** | **$O(1)$** | **Sim** | **Não** |
-
----
-
-## 🛠️ Como Executar os Códigos
-
-### 1. Rodar os testes de corretude
-Para conferir se o algoritmo passa em todos os 16 testes obrigatórios da disciplina:
 ```bash
-python tests/test_suite.py
-```
-
-### 2. Rodar o template oficial da disciplina
-```bash
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -v
 python src/student_template.py
-```
-
-### 3. Rodar os benchmarks e regerar os gráficos
-```bash
 python benchmarks/benchmark.py
 ```
 
----
+Para regenerar o PDF, tambem sao necessarios `reportlab`, `pypdf` e `pdfplumber`:
 
-## 🤖 Declaração de Uso de Inteligência Artificial
+```bash
+python scripts/build_report_pdf.py
+```
 
-Para a elaboração deste trabalho prático, utilizamos a ferramenta **Google Antigravity (Gemini)** como auxílio técnico.
+## Convencao das métricas
 
-**Como a IA foi utilizada:**
-- Criação dos scripts para gerar os gráficos com o Matplotlib.
-- Auxílio na automação dos scripts de testes e na formatação das tabelas e arquivos.
+- Uma comparação corresponde a cada avaliação relacional entre duas chaves: `<`, `>`, `==` ou `!=`.
+- Uma movimentação corresponde a uma escrita de chave na lista de trabalho.
+- Uma troca entre duas posições distintas conta como duas movimentações.
+- Copias de entrada e variaveis auxiliares não entram na contagem de movimentações, seguindo a mesma convencao dos algoritmos de referência.
 
-**Autoria do algoritmo:**
-Toda a ideia conceitual, o raciocínio matemático e a lógica do algoritmo **ACPS** (como a verificação pelas duas pontas, a escolha dos pivôs em tempo constante e a proteção contra números repetidos) foram idealizadas, projetadas e desenvolvidas pelos alunos **Marcus Vinicius Morini Querol Junior** e **Vinicius Da Silva Gonçalves**.
+## Uso de inteligência artificial
+
+O historico do trabalho utilizou Google Antigravity com Gemini e OpenAI Codex. A declaração completa, incluindo finalidade, modificacoes e validação, esta no relatório técnico. A concepcao, a revisão crítica e a defesa oral permanecem sob responsabilidade dos autores.

@@ -3,16 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Relatórios e Apresentações (Conforme instrução: apenas códigos e README no repositório)
+# Apresentacoes e documentos auxiliares
 *.pptx
-*.pdf
 *.docx
 slides_preview/
-RELATORIO_TECNICO_TP1.*
-SLIDES_APRESENTACAO_TP1.*
 GUIA_MESTRE_DO_ALGORITMO_ACPS.*
 documentos/
-scripts/
 
 # Scripts temporários de diagnóstico e teste
 diag_*.py
